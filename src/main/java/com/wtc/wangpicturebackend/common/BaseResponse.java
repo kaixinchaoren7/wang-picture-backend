@@ -2,11 +2,13 @@ package com.wtc.wangpicturebackend.common;
 
 import com.wtc.wangpicturebackend.exception.ErrorCode;
 
+import java.io.Serializable;
+
 /**
  * 全局响应封装类
  * @param <T>
  */
-public class BaseResponse<T> {
+public class BaseResponse<T> implements Serializable {
     private int code;
     private T data;
     private String message;
