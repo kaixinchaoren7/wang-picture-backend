@@ -1,6 +1,7 @@
 package com.wtc.wangpicturebackend.common;
 
 import com.wtc.wangpicturebackend.exception.ErrorCode;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * 全局响应封装类
  * @param <T>
  */
+@Data
 public class BaseResponse<T> implements Serializable {
     private int code;
     private T data;
