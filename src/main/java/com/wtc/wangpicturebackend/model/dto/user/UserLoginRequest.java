@@ -1,17 +1,14 @@
 package com.wtc.wangpicturebackend.model.dto.user;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 用户登录请求
+ */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserRegisterRequest implements Serializable {
-
+public class UserLoginRequest implements Serializable {
     private static final long serialVersionUID = 8735650154179439661L;
     /**
      * 账号
@@ -20,10 +17,5 @@ public class UserRegisterRequest implements Serializable {
     /**
      * 密码
      */
-    private String passWord;
-    /**
-     * 确认密码
-     */
-    private String checkPassword;
-
+    private String userPassword;
 }
