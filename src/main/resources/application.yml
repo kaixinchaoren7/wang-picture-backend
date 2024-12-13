@@ -8,16 +8,19 @@ spring:
     name: wang-picture-backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306
+    url: jdbc:mysql://localhost:3306/wang_picture
+    username: root
+    password: xiaobao123
 mybatis-plus:
   configuration:
     # MyBatis 配置
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+      # 设置为false，关闭下划线转驼峰命名
   global-config:
     db-config:
       logic-delete-field: isDelete
-      logic-delete-value: 1
+      logic-delete-value: 1  #逻辑删除字段。删了为1 不删为0
       logic-not-delete-value: 0
 knife4j:
   enable: true
