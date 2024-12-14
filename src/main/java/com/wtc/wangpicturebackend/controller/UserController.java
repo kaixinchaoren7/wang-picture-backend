@@ -6,12 +6,10 @@ import com.wtc.wangpicturebackend.exception.ErrorCode;
 import com.wtc.wangpicturebackend.exception.ThrowUtils;
 import com.wtc.wangpicturebackend.model.dto.user.UserLoginRequest;
 import com.wtc.wangpicturebackend.model.dto.user.UserRegisterRequest;
+import com.wtc.wangpicturebackend.model.entity.User;
 import com.wtc.wangpicturebackend.model.vo.LoginUserVO;
 import com.wtc.wangpicturebackend.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +55,19 @@ public class UserController {
     @PostMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
        ThrowUtils.throwIf(request==null, ErrorCode.PARAMS_ERROR);
-       boolean result=userService.userLogout(request);
+       boolean result = userService.userLogout(request);
        return ResultUtils.success(result);
+    }
+
+    /**
+     * 获取登陆用户
+     * @param request
+     * @return
+     */
+    @GetMapping("/get/login")
+    public BaseResponse<LoginUserVO> getUser(HttpServletRequest request) {
+        ThrowUtils.throwIf(request==null, ErrorCode.PARAMS_ERROR);
+        User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(userService.getLoginUserVO(loginUser));
     }
 }
