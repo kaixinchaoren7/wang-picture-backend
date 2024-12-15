@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class deleteRequest implements Serializable {
+public class DeleteRequest implements Serializable {
 
     /**
      * 删除数据的id

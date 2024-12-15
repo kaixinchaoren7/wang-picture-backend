@@ -1,13 +1,17 @@
 package com.wtc.wangpicturebackend.service;
 
 import cn.hutool.http.server.HttpServerRequest;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wtc.wangpicturebackend.model.dto.user.UserQueryRequest;
 import com.wtc.wangpicturebackend.model.dto.user.UserRegisterRequest;
 import com.wtc.wangpicturebackend.model.entity.User;
 import com.wtc.wangpicturebackend.model.vo.LoginUserVO;
+import com.wtc.wangpicturebackend.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.http.HttpClient;
+import java.util.List;
 
 public interface UserService extends IService<User> {
     /**
@@ -20,6 +24,13 @@ public interface UserService extends IService<User> {
      */
     long userRegister(String userAccount, String userPassword, String checkPassword);
 
+    /**
+     * 获取加密后的密码
+     *
+     * @param userPassword 用户密码
+     * @return 加密后的密码
+     */
+    public String getEncryptPassword(String userPassword);
     /**
      * 用户登陆
      * @param userAccount
@@ -44,4 +55,15 @@ public interface UserService extends IService<User> {
      * @return
      */
     User getLoginUser(HttpServletRequest request);
+
+    /**
+     * 获取包装类
+     * @param user
+     * @return
+     */
+    UserVO getUserVO(User user);
+
+    Wrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
+
+    List<UserVO> getUserVOList(List<User> records);
 }

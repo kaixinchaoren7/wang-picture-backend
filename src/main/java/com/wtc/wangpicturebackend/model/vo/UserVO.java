@@ -1,22 +1,27 @@
-package com.wtc.wangpicturebackend.model.dto.user;
+package com.wtc.wangpicturebackend.model.vo;
 
 import lombok.Data;
 
-import java.io.Serializable;
+import java.util.Date;
 
 /**
- * 用户创建请求
+ * 用户视图
  */
 @Data
-public class UserAddRequest implements Serializable {
+public class UserVO {
+
     /**
-     * 用户昵称
+     * id
      */
-    private String userName;
+    private Long id;
     /**
      * 账号
      */
     private String userAccount;
+    /**
+     * 用户昵称
+     */
+    private String userName;
     /**
      * 用户头像
      */
@@ -26,8 +31,12 @@ public class UserAddRequest implements Serializable {
      */
     private String userProfile;
     /**
-     * 用户角色: user, admin
+     * 用户角色：user/admin
      */
     private String userRole;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
     private static final long serialVersionUID = 1L;
 }
