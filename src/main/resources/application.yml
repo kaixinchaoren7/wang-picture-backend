@@ -11,6 +11,9 @@ spring:
     url: jdbc:mysql://localhost:3306/wang_picture
     username: root
     password: xiaobao123
+  servlet:
+    multipart:
+      max-file-size: 10MB
 mybatis-plus:
   configuration:
     # MyBatis 配置
