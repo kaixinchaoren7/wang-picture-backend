@@ -228,4 +228,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .map(this::getUserVO)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * 判断用户是否为管理员
+     * @param user
+     * @return
+     */
+    @Override
+    public boolean isAdmin(User user) {
+        ThrowUtils.throwIf(user==null,ErrorCode.NOT_LOGIN_ERROR);
+        String userRole = user.getUserRole();
+        if(userRole.equals(UserRoleEnum.ADMIN.getValue())){
+            return true;
+        }
+        return false;
+    }
 }

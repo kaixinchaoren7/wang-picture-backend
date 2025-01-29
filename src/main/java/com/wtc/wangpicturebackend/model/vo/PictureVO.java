@@ -85,6 +85,11 @@ public class PictureVO {
     private Date updateTime;
 
     /**
+     * 创建用户信息
+     */
+    private UserVO userVO;
+
+    /**
      * 封装类转对象
      */
     public static Picture voToObj(PictureVO pictureVO) {
