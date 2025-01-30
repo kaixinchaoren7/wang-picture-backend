@@ -2,6 +2,7 @@ package com.wtc.wangpicturebackend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wtc.wangpicturebackend.common.DeleteRequest;
 import com.wtc.wangpicturebackend.model.dto.picture.PictureQueryRequest;
 import com.wtc.wangpicturebackend.model.dto.picture.PictureUploadRequest;
 import com.wtc.wangpicturebackend.model.entity.Picture;
@@ -51,4 +52,11 @@ public interface PictureService extends IService<Picture> {
      * @return
      */
     public Page<PictureVO> getPictureVOPage(Page<Picture> picturePage,HttpServletRequest request);
+
+    /**
+     * 图片数据校验
+     * @param picture
+     */
+    public void validPicture(Picture picture);
+
 }

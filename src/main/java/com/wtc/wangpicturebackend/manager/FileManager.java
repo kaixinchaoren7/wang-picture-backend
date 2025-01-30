@@ -109,7 +109,7 @@ public class FileManager {
      *
      * @param multipartFile
      */
-    private void validPicture(MultipartFile multipartFile) {
+    public void validPicture(MultipartFile multipartFile) {
         ThrowUtils.throwIf(multipartFile == null, ErrorCode.PARAMS_ERROR, "文件不能为空");
         // 1. 校验文件大小
         long fileSize = multipartFile.getSize();

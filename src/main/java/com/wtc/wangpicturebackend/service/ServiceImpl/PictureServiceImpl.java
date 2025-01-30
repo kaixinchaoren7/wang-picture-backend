@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wtc.wangpicturebackend.common.DeleteRequest;
 import com.wtc.wangpicturebackend.exception.ErrorCode;
 import com.wtc.wangpicturebackend.exception.ThrowUtils;
 import com.wtc.wangpicturebackend.manager.FileManager;
@@ -185,6 +186,28 @@ public class PictureServiceImpl extends ServiceImpl<PictureMapper, Picture>
         pictureVOPage.setRecords(pictureVOList);
         return pictureVOPage;
     }
+
+    /**
+     * 图片数据校验
+     * @param picture
+     */
+    @Override
+    public void validPicture(Picture picture) {
+        ThrowUtils.throwIf(picture==null,ErrorCode.PARAMS_ERROR);
+        //从对象中取值
+        long id = picture.getId();
+        String url=picture.getUrl();
+        String introduction=picture.getIntroduction();
+        ThrowUtils.throwIf(ObjUtil.isEmpty(id),ErrorCode.PARAMS_ERROR,"id 不能为空");
+        if(StrUtil.isNotBlank(url)){
+            ThrowUtils.throwIf(url.length()>1024,ErrorCode.PARAMS_ERROR,"url太长");
+        }
+        if(StrUtil.isNotBlank(introduction)){
+            ThrowUtils.throwIf(introduction.length()>800,ErrorCode.PARAMS_ERROR,"简介过长");
+        }
+    }
+
+
 }
 
 
