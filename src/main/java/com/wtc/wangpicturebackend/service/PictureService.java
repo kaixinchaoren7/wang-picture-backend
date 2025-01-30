@@ -2,7 +2,9 @@ package com.wtc.wangpicturebackend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wtc.wangpicturebackend.common.DeleteRequest;
 import com.wtc.wangpicturebackend.model.dto.picture.PictureQueryRequest;
+import com.wtc.wangpicturebackend.model.dto.picture.PictureReviewRequest;
 import com.wtc.wangpicturebackend.model.dto.picture.PictureUploadRequest;
 import com.wtc.wangpicturebackend.model.entity.Picture;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -51,4 +53,26 @@ public interface PictureService extends IService<Picture> {
      * @return
      */
     public Page<PictureVO> getPictureVOPage(Page<Picture> picturePage,HttpServletRequest request);
+
+    /**
+     * 图片数据校验
+     * @param picture
+     */
+    public void validPicture(Picture picture);
+
+    /**
+     * 图片审核
+     * @param pictureReviewRequest
+     * @param loginUser
+     */
+    void doPictureReview(PictureReviewRequest pictureReviewRequest,User loginUser);
+
+    /**
+     * 补充审核参数 通用 （图片上传，用户编辑，管理员更新都需要设置审核状态）
+     * 根据用户的角色给图片对象填充审核字段的值
+     * @param picture
+     * @param loginUser
+     */
+    public void fillReviewParams(Picture picture,User loginUser);
+
 }
